@@ -1,9 +1,13 @@
 // import express from 'express'
+require('dotenv').config();
 const express = require('express')
 const app = express(); // blueprint  or main control center Everything (routes, requests, responses) will go through this app
 const db = require('./db');
+
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); //req.body
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('Welcome Om What you want...?')
@@ -36,7 +40,8 @@ const menuItemRoutes = require('./routes/menuItemRoutes')
 app.use('/person', personRoutes);
 app.use('/MenuItem', menuItemRoutes);
 
-app.listen(3000, () => {
+
+app.listen(PORT, () => {
   console.log('Server is running on http://localhost:3000')
 })
 
